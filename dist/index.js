@@ -31827,11 +31827,23 @@ module.exports = parseParams
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+
+;// CONCATENATED MODULE: ./node_modules/@octokit/webhooks-definitions/schema.json
+const schema_namespaceObject = {};
+;// CONCATENATED MODULE: ./index.js
 const core = __nccwpck_require__(5956);
 const github = __nccwpck_require__(580);
 
+
 try{
-    const nameToGreet = core.getInput('who-to-great');
+    if (github.context.eventName === 'push') {
+        const pushPayload = github.context.payload
+        core.info(`The head commit is: ${pushPayload.head_commit}`)
+    }
+    const nameToGreet = core.getInput('who-to-greet');
     console.log(`Hello ${nameToGreet}!`);
     const time=(new Date()).toTimeString();
     core.setOutput("time",time);
@@ -31843,6 +31855,8 @@ catch (error){
 
 
 
+
+})();
 
 module.exports = __webpack_exports__;
 /******/ })()
