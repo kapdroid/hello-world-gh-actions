@@ -1,0 +1,13 @@
+name: 🕒 Minute Greeter
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every minute
+  workflow_dispatch:
+
+jobs:
+  greet:
+    name: 👋 Say Hello
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello
+        run: echo "Hello"
